@@ -12,7 +12,7 @@ cd $GOPATH/src/github.com/concourse/semver-resource
 
 go install ./vendor/github.com/onsi/ginkgo/ginkgo
 
-CGO_ENABLED=1 ginkgo -race -r -p "$@"
+CGO_ENABLED=1 ginkgo -r -p "$@"
 
 ./scripts/build
 

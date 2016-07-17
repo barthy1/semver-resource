@@ -97,7 +97,7 @@ var _ = Describe("Check", func() {
 			Expect(err).NotTo(HaveOccurred())
 
 			// account for roundtrip to s3
-			Eventually(session, 5*time.Second).Should(gexec.Exit(0))
+			Eventually(session, 10*time.Second).Should(gexec.Exit(0))
 
 			err = json.Unmarshal(session.Out.Contents(), &response)
 			Expect(err).NotTo(HaveOccurred())
