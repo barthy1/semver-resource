@@ -1,0 +1,14 @@
+FROM 140.211.168.97:5000/git:2.10
+
+ADD assets/ /opt/resource/
+
+ADD test/ /opt/resource-tests/
+
+RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+
+RUN apt-get update \
+ && apt-get install -y openssh-client
+
+RUN /opt/resource-tests/all.sh && \
+  rm -rf /tmp/*
