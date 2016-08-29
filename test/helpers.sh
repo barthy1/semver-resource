@@ -21,6 +21,8 @@ init_repo() {
     cd $(mktemp -d $TMPDIR/repo.XXXXXX)
 
     git init -q
+    git config --global user.email "test@example.com"
+    git config --global user.name "test"
 
     # start with an initial commit
     git \

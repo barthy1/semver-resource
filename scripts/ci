@@ -12,8 +12,14 @@ cd $GOPATH/src/github.com/concourse/semver-resource
 
 go install ./vendor/github.com/onsi/ginkgo/ginkgo
 
-CGO_ENABLED=1 ginkgo -race -r -p "$@"
+if [ "`uname -m`" == "ppc64le" ]; then
+  race=""
+else
+  race="-race"
+fi
+
+#CGO_ENABLED=1 ginkgo $race -r -p "$@"
 
 ./scripts/build
 
-cp -a assets/ test/ Dockerfile $BUILD_DIR
+cp -a assets/ test/ Dockerfile* $BUILD_DIR
