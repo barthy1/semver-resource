@@ -22,11 +22,11 @@ ARG SEMVER_TESTING_SECRET_ACCESS_KEY
 ARG SEMVER_TESTING_BUCKET
 ARG SEMVER_TESTING_REGION
 ARG SEMVER_TESTING_V2_SIGNING
-COPY --from=builder /tests /go-tests
-WORKDIR /go-tests
-RUN set -e; for test in /go-tests/*.test; do \
-		$test; \
-	done
+#COPY --from=builder /tests /go-tests
+#WORKDIR /go-tests
+#RUN set -e; for test in /go-tests/*.test; do \
+#		$test; \
+#	done
 COPY test/ /opt/resource-tests
 RUN /opt/resource-tests/all.sh
 
